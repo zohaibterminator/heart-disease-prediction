@@ -1,9 +1,11 @@
+from sklearn.ensemble import RandomForestClassifier
 import xgboost as xgb
 from data_cleaning import main
 from sklearn.metrics import classification_report
 import pandas as pd
 import dill
 
+# Load the data from the pickle file
 def load_data():
     with open("transformed_data.pkl", "rb") as f:
         X_train, X_test, y_train, y_test = dill.load(f)
@@ -34,7 +36,6 @@ def main():
     y_pred = model.predict(X_test)
 
     report = classification_report(y_test, y_pred)
-    print(report)
 
 
 if __name__=="__main__":
